@@ -9,25 +9,7 @@ export default function Home() {
       <Text>Home</Text>
       <Text>Home</Text>
       <Text>Home</Text>
-      <Text>Home</Text>
-      <Text>Home</Text>
-      <Text>Home</Text>
-      <Text>Home</Text>
-      <Text>Home</Text>
-      <Text>Home</Text>
-      <Text>Home</Text>
-      <Text>dfgdf</Text>
-      <Text>dfgdf</Text>
-      <Text>dfgdf</Text>
-      <Text>dfgdf</Text>
-      <Text>dfgdf</Text>
-      <Text>dfgdf</Text>
-      <Text>dfgdf</Text>
-      <Text>dfgdf</Text>
-      <Text>dfgdf</Text>
-      <Text>dfgdf</Text>
-      <Text>dfgdf</Text>
-      <Text>dfgdf</Text>
+
     </Box>
 
   )

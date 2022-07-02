@@ -1,19 +1,17 @@
 export const bussinessDrawer = {
   homeDrawer: 'Home',
-  addItemDrawer: 'addItemDrawer',
-  addBussinessDrawer: 'addBussinessDrawer',
-  ordersDrawer: 'ordersDrawer',
-  manageOrdersDrawer: 'manageOrdersDrawer',
-  settingsDrawer: 'settingsDrawer',
-  profileDrawer: 'profileDrawer',
-  eachOrderDrawer: 'eachOrderDrawer',
+  addItemDrawer: 'Add Item',
+  manageItemsDrawer: 'Manage Items',
+  addBussinessDrawer: 'Add Your Bussiness',
+  manageOrdersDrawer: 'Manage Your Orders',
+  settingsDrawer: 'Settings',
+  profileDrawer: 'Profile',
 }
 
 export const customerDrawer = {
   homeDrawer: 'Home',
-  ordersDrawer: 'ordersDrawer',
-  manageOrdersDrawer: 'manageOrdersDrawer',
-  settingsDrawer: 'settingsDrawer',
-  eachOrderDrawer: 'eachOrderDrawer',
-  profileDrawer: 'profileDrawer',
+  ordersDrawer: 'Your Orders',
+  settingsDrawer: 'Settings',
+  profileDrawer: 'Profile',
+  bussinessDrawer: 'Shops',
 }

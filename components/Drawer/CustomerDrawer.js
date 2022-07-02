@@ -4,7 +4,6 @@ import {
   createDrawerNavigator,
   DrawerContentScrollView,
 } from "@react-navigation/drawer";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import {
   NativeBaseProvider,
   Button,
@@ -21,10 +20,53 @@ import {
 } from "native-base";
 import { customerDrawer } from "../../constants/navigations";
 import Home from "../../views/customer/Home";
-import AllOrders from "../../views/customer/AllOrders";
+import AllOrders from "../../views/customer/Orders";
 import { View } from "react-native";
+import { AntDesign } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const Drawer = createDrawerNavigator();
+
+const showElementScreens = [
+  {
+    label: 'Shops',
+    family: Entypo,
+    icon: 'shop',
+    view: customerDrawer.bussinessDrawer,
+  },
+  {
+    label: 'Orders',
+    family: AntDesign,
+    icon: 'shoppingcart',
+    view: customerDrawer.ordersDrawer
+  }
+]
+
+
+const otherScreens = [
+  {
+    label: 'Setting',
+    family: AntDesign,
+    icon: 'setting',
+    view: customerDrawer.settingsDrawer
+  },
+  {
+    label: 'Profile',
+    family: AntDesign,
+    icon: 'user',
+    view: customerDrawer.profileDrawer
+  }]
+
+const topScreens = [
+  {
+    label: 'Home',
+    family: AntDesign,
+    icon: 'home',
+    view: customerDrawer.homeDrawer
+  }
+]
 
 
 function CustomDrawerContent(props) {
@@ -40,51 +82,92 @@ function CustomDrawerContent(props) {
           </Text>
         </Box>
         <VStack divider={<Divider />} space="4">
-          <VStack space="3">
-
-            <Pressable
-              px="5"
-              py="3"
-              rounded="md"
-              onPress={(event) => {
-                props.navigation.navigate(customerDrawer.homeDrawer);
-              }}
-            >
-              <HStack space="7" alignItems="center">
-                <Icon
-
-                  size="5"
-                  as={<MaterialCommunityIcons name='form-textbox-password' />}
-                />
-                <Text
-                  fontWeight="500"
-                >
-                  <Text>Home</Text>
-                </Text>
-              </HStack>
-            </Pressable>
-
-            <Pressable
-              px="5"
-              py="3"
-              rounded="md"
-              onPress={(event) => {
-                props.navigation.navigate(customerDrawer.ordersDrawer);
-              }}
-            >
-              <HStack space="7" alignItems="center">
-                <Icon
-                  size="5"
-                  as={<MaterialCommunityIcons name='form-textbox-password' />}
-                />
-                <Text
-                  fontWeight="500"
-                >
-                  <Text>All Orders</Text>
-                </Text>
-              </HStack>
-            </Pressable>
-
+          <VStack space="6" my="2" mx="1">
+            <Box px="4">
+              <Text bold color="gray.700">
+                Mail
+              </Text>
+              <Text fontSize="14" mt="1" color="gray.500" fontWeight="500">
+                john_doe@gmail.com
+              </Text>
+            </Box>
+            <VStack divider={<Divider />} space="4">
+              <VStack space="3">
+                {topScreens.map(screen =>
+                  <Pressable
+                  key={screen.label}
+                    px="5"
+                    py="3"
+                    rounded="md"
+                    onPress={(event) => {
+                      props.navigation.navigate(screen.view);
+                    }}
+                  >
+                    <HStack space="7" alignItems="center">
+                      <Icon
+                        size="5"
+                        as={<screen.family name={screen.icon} />}
+                      />
+                      <Text
+                        fontWeight="500"
+                      >
+                        <Text>{screen.label}</Text>
+                      </Text>
+                    </HStack>
+                  </Pressable>
+                )}
+              </VStack>
+              <VStack space="5">
+                {showElementScreens.map(screen =>
+                  <Pressable
+                    key={screen.label}
+                    px="5"
+                    py="3"
+                    rounded="md"
+                    onPress={(event) => {
+                      props.navigation.navigate(screen.view);
+                    }}
+                  >
+                    <HStack space="7" alignItems="center">
+                      <Icon
+                        size="5"
+                        as={<screen.family name={screen.icon} />}
+                      />
+                      <Text
+                        fontWeight="500"
+                      >
+                        <Text>{screen.label}</Text>
+                      </Text>
+                    </HStack>
+                  </Pressable>
+                )}
+              </VStack>
+              <VStack space="5">
+                {otherScreens.map(screen =>
+                  <Pressable
+                    key={screen.label}
+                    px="5"
+                    py="3"
+                    rounded="md"
+                    onPress={(event) => {
+                      props.navigation.navigate(screen.view);
+                    }}
+                  >
+                    <HStack space="7" alignItems="center">
+                      <Icon
+                        size="5"
+                        as={<screen.family name={screen.icon} />}
+                      />
+                      <Text
+                        fontWeight="500"
+                      >
+                        <Text>{screen.label}</Text>
+                      </Text>
+                    </HStack>
+                  </Pressable>
+                )}
+              </VStack>
+            </VStack>
           </VStack>
         </VStack>
       </VStack>
@@ -107,9 +190,9 @@ function MyDrawer() {
 export default function CustomerDrawer() {
   return (
     <>
-    <NavigationContainer>
-      <MyDrawer />
-    </NavigationContainer>
+      <NavigationContainer>
+        <MyDrawer />
+      </NavigationContainer>
     </>
   );
 }

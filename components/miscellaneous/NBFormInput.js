@@ -4,7 +4,7 @@ import React from 'react'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function NBFormInput(props) {
-  const { placeholder, name, label, type, helperText, errorMsg, isRequired, iconHandler, rightIcon, leftIcon, keyboardType } = props;
+  const { placeholder, label, type, helperText, errorMsg, isRequired, rightIcon, leftIcon, keyboardType } = props;
 
   function rightIconUI() {
     return <Icon

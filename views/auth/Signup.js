@@ -1,6 +1,6 @@
 import { Container, VStack, Box, Stack, Input, Icon, KeyboardAvoidingView, Text, Button, HStack } from 'native-base'
 import React, { useState } from 'react'
-import Footer from '../../components/Footer/Footer'
+import Footer from '../../components/common/Footer'
 import { BrandFull } from '../../components/miscellaneous/Brand'
 import NBFormInput from '../../components/miscellaneous/NBFormInput';
 import { MaterialCommunityIcons } from '@expo/vector-icons';

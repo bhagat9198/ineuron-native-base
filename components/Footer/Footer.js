@@ -11,8 +11,6 @@ export default function Footer() {
     // console.log('Footer :: switchHandler :: e :: ', e );
     toggleColorMode()
   }
-
-
   return (
     <HStack>
       <HStack flex={1}>

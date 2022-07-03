@@ -3,11 +3,12 @@ import { FormControl, Icon, Input, Radio, Stack, WarningOutlineIcon } from 'nati
 import { MaterialIcons } from "@expo/vector-icons";
 
 export default function NBRadio(props) {
-  const { label, isRequired, radiolist, helperText, errorMsg, value, handler } = props;
+  const { label, isRequired, isDisabled, radiolist, helperText, errorMsg, value, handler } = props;
   return (
     <FormControl isRequired={isRequired ? true : false} >
       <FormControl.Label>{label}</FormControl.Label>
       <Radio.Group
+        isDisabled={isDisabled ? isDisabled : false}
         value={value}
         onChange={e => handler(e)}
         name="exampleGroup" defaultValue="1" accessibilityLabel="pick a size">

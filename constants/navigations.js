@@ -6,6 +6,7 @@ export const bussinessDrawer = {
   manageOrdersDrawer: 'Manage Your Orders',
   settingsDrawer: 'Settings',
   profileDrawer: 'Profile',
+  logoutDrawer: 'logout',
 }
 
 export const customerDrawer = {
@@ -14,4 +15,5 @@ export const customerDrawer = {
   settingsDrawer: 'Settings',
   profileDrawer: 'Profile',
   bussinessDrawer: 'Shops',
+  logoutDrawer: 'logout',
 }

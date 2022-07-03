@@ -1,5 +1,5 @@
 import { Container, VStack, Box, Stack, Input, Icon, KeyboardAvoidingView, Text, Button, HStack } from 'native-base'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Footer from '../../components/common/Footer'
 import { BrandFull } from '../../components/miscellaneous/Brand'
 import NBFormInput from '../../components/miscellaneous/NBFormInput';
@@ -14,12 +14,15 @@ import { signin } from '../../store/actions';
 import { useDispatch } from 'react-redux';
 import NBSlide from '../../components/miscellaneous/NBSlide';
 
+
 export default function Signin(props) {
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const { setAuthPage } = props;
+
+ 
 
   const iconHandler = () => {
     setShow(!show)

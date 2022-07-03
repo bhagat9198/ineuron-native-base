@@ -25,37 +25,24 @@ export default function AllItems() {
 
   }
 
-  // useEffect(() => {
-  //   async function asynFun() {
-  //     const res = await dispatch(getItems());
-  //     if (!res.status) {
-  //       <NBSlide type='error' message={res.message} />
-  //       return;
-  //     }
-  //     <NBSlide type='success' message="Signup success" />
-  //   }
-  //   asynFun()
-  // }, [])
-
   useEffect( () => {
     async function asynFun() {
       const res = await dispatch(getItems());
       console.log(res)
       if (!res.status) {
-        // <NBSlide type='error' message={res.message} />
+        <NBSlide type='error' message={res.message} />
         return;
       }
-      // <NBSlide type='success' message="Signup success" />
+      <NBSlide type='success' message="Signup success" />
     }
-    // asynFun()
+    asynFun()
   }, [])
 
   return (
     <KeyboardAwareScrollView
       enableOnAndroid={true}
     >
-      <Text>dfg</Text>
-      {/* {reducerData?.allItems && <NBFlatList2
+      {reducerData?.allItems && <NBFlatList2
         handler={val => paymentHandler(val)}
         data={
           reducerData?.allItems.map(item => ({
@@ -67,7 +54,7 @@ export default function AllItems() {
             canOrder: true,
             qrCode: false
           }))
-        } />} */}
+        } />}
 
 
     </KeyboardAwareScrollView>

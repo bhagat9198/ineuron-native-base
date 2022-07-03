@@ -31,6 +31,9 @@ import AddBussiness from "../../views/bussiness/AddBussiness";
 import ManageOrders from "../../views/bussiness/ManageOrders";
 import Settings from "../../views/bussiness/Settings";
 import Profile from "../../views/bussiness/Profile";
+import { useSelector } from "react-redux";
+import Signin from "../../views/auth/Signin";
+import Logout from "../common/Logout";
 
 const Drawer = createDrawerNavigator();
 
@@ -76,7 +79,14 @@ const otherScreens = [
     family: AntDesign,
     icon: 'user',
     view: bussinessDrawer.profileDrawer
-  }]
+  },
+  {
+    label: 'Logout',
+    family: AntDesign,
+    icon: 'logout',
+    view: bussinessDrawer.logoutDrawer
+  }
+]
 
 const topScreens = [
   {
@@ -89,15 +99,17 @@ const topScreens = [
 
 
 function CustomDrawerContent(props) {
+  const reducerData = useSelector(state => state.reducer)
+  console.log('CustomDrawerContent :: reducerData :: ', reducerData);
   return (
     <DrawerContentScrollView {...props} >
       <VStack space="6" my="2" mx="1">
         <Box px="4">
           <Text bold color="gray.700">
-            Mail
+            {reducerData?.userData && reducerData?.userData?.fullName}
           </Text>
           <Text fontSize="14" mt="1" color="gray.500" fontWeight="500">
-            john_doe@gmail.com
+            {reducerData?.userData && reducerData?.userData?.email}
           </Text>
         </Box>
         <VStack divider={<Divider />} space="4">
@@ -220,6 +232,7 @@ function MyDrawer() {
       <Drawer.Screen name={bussinessDrawer.manageOrdersDrawer} component={ManageOrders} />
       <Drawer.Screen name={bussinessDrawer.settingsDrawer} component={Settings} />
       <Drawer.Screen name={bussinessDrawer.profileDrawer} component={Profile} />
+      <Drawer.Screen name={bussinessDrawer.logoutDrawer} component={Logout} />
     </Drawer.Navigator>
   );
 }

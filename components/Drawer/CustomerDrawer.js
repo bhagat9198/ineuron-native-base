@@ -31,6 +31,9 @@ import Orders from "../../views/customer/Orders";
 import Settings from "../../views/customer/Settings";
 import Profile from "../../views/customer/Profile";
 import AllItems from "../../views/customer/AllItems";
+import { useSelector } from "react-redux";
+import Signin from "../../views/auth/Signin";
+import Logout from "../common/Logout";
 
 const Drawer = createDrawerNavigator();
 
@@ -62,6 +65,12 @@ const otherScreens = [
     family: AntDesign,
     icon: 'user',
     view: customerDrawer.profileDrawer
+  },
+  {
+    label: 'Logout',
+    family: AntDesign,
+    icon: 'logout',
+    view: customerDrawer.logoutDrawer
   }]
 
 const topScreens = [
@@ -75,15 +84,17 @@ const topScreens = [
 
 
 function CustomDrawerContent(props) {
+  const reducerData = useSelector(state => state.reducer)
+  console.log('CustomDrawerContent :: reducerData :: ', reducerData);
   return (
     <DrawerContentScrollView {...props}  >
       <VStack space="6" my="2" mx="1">
         <Box px="4">
           <Text bold color="gray.700">
-            Mail
+            {reducerData?.userData && reducerData?.userData?.fullName}
           </Text>
           <Text fontSize="14" mt="1" color="gray.500" fontWeight="500">
-            john_doe@gmail.com
+            {reducerData?.userData && reducerData?.userData?.email}
           </Text>
         </Box>
 
@@ -105,7 +116,7 @@ function CustomDrawerContent(props) {
                     as={<screen.family name={screen.icon} />}
                   />
                   <Text
-                    // fontWeight="500"
+                  // fontWeight="500"
                   >
                     {screen.label}
                   </Text>
@@ -130,7 +141,7 @@ function CustomDrawerContent(props) {
                     as={<screen.family name={screen.icon} />}
                   />
                   <Text
-                    // fontWeight="500"
+                  // fontWeight="500"
                   >
                     {screen.label}
                   </Text>
@@ -155,7 +166,7 @@ function CustomDrawerContent(props) {
                     as={<screen.family name={screen.icon} />}
                   />
                   <Text
-                    // fontWeight="500"
+                  // fontWeight="500"
                   >
                     {screen.label}
                   </Text>
@@ -182,6 +193,7 @@ function MyDrawer() {
       <Drawer.Screen name={customerDrawer.bussinessDrawer} component={AllItems} />
       <Drawer.Screen name={customerDrawer.settingsDrawer} component={Settings} />
       <Drawer.Screen name={customerDrawer.profileDrawer} component={Profile} />
+      <Drawer.Screen name={customerDrawer.logoutDrawer} component={Logout} />
 
     </Drawer.Navigator>
   );

@@ -1,13 +1,34 @@
 import { Box } from 'native-base'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { useDispatch, useSelector } from 'react-redux';
+import NBFlatList1 from '../../components/miscellaneous/NBFlatList1';
+import NBSlide from '../../components/miscellaneous/NBSlide';
+import { getOrders } from '../../store/actions';
 
 
 export default function ManageOrders() {
+  const reducerData = useSelector(state => state.reducer);
+  const dispatch = useDispatch();
+
+  console.log('AllItems :: reducerData :: ', reducerData);
+  useEffect(() => {
+    async function asynFun() {
+      const res = await dispatch(getOrders());
+      if (!res.status) {
+        <NBSlide type='error' message={res.message} />
+        return;
+      }
+      <NBSlide type='success' message="Signup success" />
+    }
+    asynFun()
+  }, [])
+
   return (
     <KeyboardAwareScrollView
       enableOnAndroid={true}
     >
-      </KeyboardAwareScrollView>
+      {reducerData?.allItems && <NBFlatList1 data={reducerData.allOrders} />}
+    </KeyboardAwareScrollView>
   )
 }

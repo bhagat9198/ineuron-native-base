@@ -9,21 +9,41 @@ import { Entypo } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { Platform } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
+import { async } from '@firebase/util';
+import { signin } from '../../store/actions';
+import { useDispatch } from 'react-redux';
+import NBSlide from '../../components/miscellaneous/NBSlide';
 
-export default function Signin() {
+export default function Signin(props) {
   const [show, setShow] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+  const { setAuthPage } = props;
 
   const iconHandler = () => {
     setShow(!show)
   }
 
+  const signinHandler = async() => {
+    const res = await dispatch(signin({
+      email, password
+    }))
+    console.log('Signin :: signinHandler :: res :: ', res);
+    if (!res.status) {
+      <NBSlide type='error' message={res.message} />
+      return;
+    }
+    <NBSlide type='success' message="Signin success" />
+  }
 
   return (
-    <VStack height='full'  >
-      <VStack flex={1}>
-        <Box>
-          <BrandFull style={{ fontWeight: 700, fontSize: '5xl' }} styleIcon={{ size: 50 }} />
-        </Box>
+    <VStack height='full' px={{md:48}}  space={4} >
+      <Box alignItems="center" justifyContent="center" mt={10}>
+        <BrandFull style={{ fontWeight: 700, fontSize: '5xl' }} styleIcon={{ size: 50 }} />
+      </Box>
+      <VStack flex={1} justifyContent="center">
+        
         <Box px={4}>
           <Stack space={1} w="full" alignItems="center" >
             <KeyboardAvoidingView w='full'>
@@ -31,7 +51,10 @@ export default function Signin() {
                 leftIcon={{
                   name: "email",
                   family: Entypo
-                }} />
+                }} 
+                value={email}
+                handler={e => setEmail(e.target.value)}
+                />
               <NBFormInput label="Password"
                 leftIcon={{
                   family: MaterialCommunityIcons,
@@ -43,27 +66,31 @@ export default function Signin() {
                   handler: iconHandler
                 }}
                 placeholder="Password" type={show ? "text" : "password"}
+                value={password}
+                handler={e => setPassword(e.target.value)}
               />
               <Button
-                leftIcon={<AntDesign name="user" size={24} color="black" />}
+                mt={4}
+                leftIcon={<AntDesign name="user" size={24} color="white" />}
+                onPress={signinHandler}
+                _text={{color:"white", fontSize:"md", fontWeight:"medium"}}
               >
-                <Text>SignIn</Text> 
+                SignIn
               </Button>
 
             </KeyboardAvoidingView>
-            <HStack>
+            <HStack alignItems="center" mt={4}>
               <Text>
                 Be a part of our team 
               </Text>
-              <Button bg='transparent' >
-                <Text fontWeight={900}>SignUp</Text>
+              <Button bg='transparent' onPress={() => setAuthPage('signup')}  _text={{fontWeight:"bold" , color:"coolGray.900"}}>SignUp
               </Button>
             </HStack>
 
           </Stack>
         </Box>
       </VStack>
-      <Box >
+      <Box width="100%" >
         <Footer />
       </Box>
     </VStack>

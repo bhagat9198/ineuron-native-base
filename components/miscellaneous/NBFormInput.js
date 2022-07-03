@@ -4,12 +4,12 @@ import React from 'react'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function NBFormInput(props) {
-  const { placeholder, label, type, helperText, errorMsg, isRequired, rightIcon, leftIcon, keyboardType } = props;
+  const { value, placeholder, label, type, helperText, errorMsg, isRequired, rightIcon, leftIcon, keyboardType, handler } = props;
 
   function rightIconUI() {
     return <Icon
       as={<rightIcon.family name={rightIcon.name} />}
-      size={5} mr="2" color="muted.400"
+      size={5} mx="2" color="muted.400"
       onPress={rightIcon.handler ? rightIcon.handler : null}
     />
   }
@@ -17,7 +17,7 @@ export default function NBFormInput(props) {
   function leftIconUI() {
     return <Icon
       as={<leftIcon.family name={leftIcon.name} />}
-      size={5} mr="2" color="muted.400"
+      size={5} mx="2" color="muted.400"
       onPress={leftIcon.handler ? leftIcon.handler : null}
     />
   }
@@ -30,6 +30,9 @@ export default function NBFormInput(props) {
         keyboardType={keyboardType ? keyboardType : 'text'}
         InputLeftElement={leftIcon ? leftIconUI() : null}
         InputRightElement={rightIcon ? rightIconUI() : null}
+        value={value}
+        onChange={e => handler? handler(e) : {}}
+
       />
       <FormControl.HelperText>
         {helperText ? helperText : ''}

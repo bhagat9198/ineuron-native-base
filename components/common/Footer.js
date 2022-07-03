@@ -12,10 +12,10 @@ export default function Footer() {
     toggleColorMode()
   }
   return (
-    <HStack>
-      <HStack flex={1}>
+    <HStack  alignItems="center" justifyContent="space-between" px={{base:3}} bg="green.300" py={3} rounded="lg"  mb={2} >
+      <HStack space={2} alignItems="center">
         <AntDesign name="copyright" size={24} color="black" />
-        <Text>2022</Text>
+        <Text fontSize="md" fontWeight="medium">2022</Text>
       </HStack>
       <Switch onChange={switchHandler} size="sm" />
     </HStack>

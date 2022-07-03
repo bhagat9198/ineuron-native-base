@@ -2,14 +2,14 @@ import { FormControl, TextArea, WarningOutlineIcon } from 'native-base'
 import React from 'react'
 
 export default function NBTextarea(props) {
-  const { placeholder, label, helperText, errorMsg, isRequired, textAreaValue} = props;
+  const { placeholder, label, helperText, errorMsg, isRequired, value, handler} = props;
   return (
     <FormControl isRequired={isRequired ? true : false} >
       <FormControl.Label>{label}</FormControl.Label>
       <TextArea
-        value={textAreaValue ? textAreaValue : ''}
+        value={value ? value : ''}
         placeholder={placeholder}
-      // onChange={demoValueControlledTextArea} 
+        onChange={e => handler(e)} 
       />
       <FormControl.HelperText>
         {helperText ? helperText : ''}

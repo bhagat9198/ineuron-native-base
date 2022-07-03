@@ -20,16 +20,16 @@ export default function Settings() {
     <KeyboardAwareScrollView
       enableOnAndroid={true}
     >
-    <VStack>
-      <HStack>
-        <Box flex={1}>Dark Theme</Box>
-        <Box><Switch onChange={switchHandler} size="sm" /></Box>
-      </HStack>
-      <HStack>
-        <Box flex={1}>Disable Account</Box>
-        <Box><Switch onChange={accountHandler} size="sm" /></Box>
-      </HStack>
-    </VStack>
+      <VStack>
+        <HStack>
+          <Box flex={1}>Dark Theme</Box>
+          <Box><Switch onChange={switchHandler} size="sm" /></Box>
+        </HStack>
+        <HStack>
+          <Box flex={1}>Disable Account</Box>
+          <Box><Switch onChange={accountHandler} size="sm" /></Box>
+        </HStack>
+      </VStack>
     </KeyboardAwareScrollView>
   )
 }

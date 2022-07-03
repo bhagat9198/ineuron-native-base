@@ -3,11 +3,14 @@ import { FormControl, Icon, Input, Radio, Stack, WarningOutlineIcon } from 'nati
 import { MaterialIcons } from "@expo/vector-icons";
 
 export default function NBRadio(props) {
-  const { label, isRequired, radiolist, helperText, errorMsg } = props;
+  const { label, isRequired, radiolist, helperText, errorMsg, value, handler } = props;
   return (
     <FormControl isRequired={isRequired ? true : false} >
       <FormControl.Label>{label}</FormControl.Label>
-      <Radio.Group name="exampleGroup" defaultValue="1" accessibilityLabel="pick a size">
+      <Radio.Group
+        value={value}
+        onChange={e => handler(e)}
+        name="exampleGroup" defaultValue="1" accessibilityLabel="pick a size">
         <Stack direction={{
           base: "column",
           md: "row"
@@ -15,10 +18,10 @@ export default function NBRadio(props) {
           base: "flex-start",
           md: "center"
         }} space={4} >
-          {radiolist.map(radio => 
+          {radiolist.map(radio =>
             <Radio key={radio.value} value={radio.value} colorScheme="red" size="sm" my={1}>
-            {radio.label}
-          </Radio>)}
+              {radio.label}
+            </Radio>)}
         </Stack>
       </Radio.Group>
       <FormControl.HelperText>
